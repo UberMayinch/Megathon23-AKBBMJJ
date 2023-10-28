@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questionnaire</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('../static/questions1.png');
+            background-size: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            font-size: larger;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            font-size: 35px;
+            color: #302e2e;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #302e2e;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="questionTitle">QUESTION {{question_no}}</h1>
+    <form id="questionForm" action="/Done" method="post">
+        <label id="questionLabel" for="{{ question_id }}"><a>Question:</a> {{ question }}<br> Strongly Disagree
+            <input type="radio" name="answer" value="1"> 1
+            <input type="radio" name="answer" value="2"> 2
+            <input type="radio" name="answer" value="3"> 3
+            <input type="radio" name="answer" value="4"> 4
+            <input type="radio" name="answer" value="5"> 5
+            <input type="radio" name="answer" value="6"> 6
+            <input type="radio" name="answer" value="7"> 7 Strongly Agree
+        </label>
+
+        <input type="submit" id="submitButton" value="Submit">
+    </form>
+</body>
+</html>

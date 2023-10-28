@@ -19,14 +19,38 @@ cursor.execute('''
     )
 ''')
 conn.commit()
+conn.close()
 
 
-# Route for the form page
+# Establish connection and create the database file
+conn = sqlite3.connect('questionnaire.db')
+cursor = conn.cursor()
+
+# Create a table to store user data and questionnaire responses
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS user_responses (
+        email TEXT,
+        question_id TEXT,
+        category TEXT,
+        answer INTEGER
+    )
+''')
+
+conn.commit()
+conn.close()
+
+current_question = 0
+
+questions = [
+    {'question': 'This is a sample statement.', 'id': 'question1', 'category':'abcd'},
+    {'question': 'This is another sample statement.', 'id': 'question2', 'category':'abef'}
+    # Add more questions in the same format
+]
+
 @app.route('/')
 def form():
     return render_template('form.html')
 
-# Route to handle form submission
 @app.route('/submit', methods=['POST'])
 def submit():
     if request.method == 'POST':
@@ -44,8 +68,43 @@ def submit():
             VALUES (?, ?, ?, ?, ?)
         ''', (email, instagram, linkedin, facebook, twitter))
         conn.commit()
+        conn.close()
 
-        return "Data received and stored successfully!"
+        global current_question
+        question = questions[current_question]['question']
+        global question_id
+        question_id = questions[current_question]['id']
+
+        return render_template('question.html', question_no=current_question+1, question=question, question_id=question_id)
+
+@app.route('/Done', methods=['POST'])
+def Done():
+    if request.method == 'POST':
+        global current_question
+        email = 'example@example.com'  # Replace with the email from the previous form submission
+        global question_id 
+        answer = request.form['answer']
+        question_cat=questions[current_question]['category']
+        # Establish a connection to the database
+        conn = sqlite3.connect('questionnaire.db')
+        cursor = conn.cursor()
+
+        # Insert the questionnaire answer along with the question ID into the database
+        cursor.execute('''
+            INSERT INTO user_responses (email, question_id, category, answer)
+            VALUES (?, ?, ?, ?)
+        ''', (email, question_id, question_cat, answer))
+
+        conn.commit()
+        conn.close()
+
+        current_question += 1  # Move to the next question
+        if current_question < len(questions):
+            question = questions[current_question]['question']
+            question_id = questions[current_question]['id']
+            return render_template('question.html', question_no=current_question+1, question=question, question_id=question_id)
+        else:
+            return "Thank you for completing the questionnaire!"
 
 if __name__ == '__main__':
     app.run(debug=True)
