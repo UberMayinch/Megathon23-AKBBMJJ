@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Options</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url('../static/game1.avif');
+        background-size: auto;
+      }
+
+      .game-container {
+        display: flex;
+      }
+
+      .game-card {
+        width: 580px;
+        height: 700px;
+        perspective: 1000px;
+        margin: 120px;
+      }
+
+      .game-card:hover .game-front {
+        transform: rotateY(-180deg);
+      }
+
+      .game-card:hover .game-back {
+        transform: rotateY(0deg);
+        transition: all 0.5s ease;
+      }
+
+      .game-front,
+      .game-back {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        position: absolute;
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .game-front {
+        transform: rotateY(0deg);
+        transition: all 0.5s ease;
+        background-size: cover;
+      }
+
+      .game-front img {
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+      }
+
+      .game-back {
+        transform: rotateY(180deg);
+        transition: all 0.5s ease;
+        background: #171721;
+        color: #f9f7f7;
+        padding: 20px;
+        font-size: 30px; /* Adjust font size */
+        line-height: 1.5;
+      }
+      
+      h1 {
+        text-align: center;
+        font-size: 36px;
+        color: #f9f7f7;
+        text-shadow: 2px 2px 4px #030303;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <h1>We will now play a game <br><br>Click on the game to start!!</h1>
+    <div class="game-container">
+      <div class="game-card">
+        <form action="/game" method="post">
+          <input type="hidden" name="game_option" value="1">
+          <button type="submit" id="game1">
+            <div class="game-front">
+              <img src="../static/challenge1.png" alt="Game 1" />
+            </div>
+            <div class="game-back">
+              <p>
+                Super Mario is a classic game where players guide Mario through 
+                various levels to rescue Princess Peach from the villain Bowser.
+                Collect power-ups, dodge enemies, and conquer challenges in this
+                iconic, adventurous platformer.
+              </p>
+            </div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

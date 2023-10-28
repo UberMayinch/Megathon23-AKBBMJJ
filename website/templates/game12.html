@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Options</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url('../static/game1.avif');
+        background-size: auto;
+      }
+
+      .game-container {
+        display: flex;
+      }
+
+      .game-card {
+        width: 580px;
+        height: 700px;
+        perspective: 1000px;
+        margin: 120px;
+      }
+
+      .game-card:hover .game-front {
+        transform: rotateY(-180deg);
+      }
+
+      .game-card:hover .game-back {
+        transform: rotateY(0deg);
+        transition: all 0.5s ease;
+      }
+
+      .game-front,
+      .game-back {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        position: absolute;
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .game-front {
+        transform: rotateY(0deg);
+        transition: all 0.5s ease;
+        background-size: cover;
+      }
+
+      .game-front img {
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+      }
+
+      .game-back {
+        transform: rotateY(180deg);
+        transition: all 0.5s ease;
+        background: #171721;
+        color: #f9f7f7;
+        padding: 20px;
+        font-size: 30px; /* Adjust font size */
+        line-height: 1.5;
+      }
+      
+      h1 {
+        text-align: center;
+        font-size: 36px;
+        color: #f9f7f7;
+        text-shadow: 2px 2px 4px #000000;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <h1>Choose Your Game</h1>
+    <div class="game-container">
+      <div class="game-card">
+        <form action="/game" method="post">
+          <input type="hidden" name="game_option" value="1">
+          <button type="submit" id="game1">
+            <div class="game-front">
+              <img src="../static/challenge1.png" alt="Game 1" />
+            </div>
+            <div class="game-back">
+              <p>
+                Red Alert!
+                Evil minions want to squeeze the planet into a square shape.
+                
+                Who's got the balls to save the world? Oh yeah, that's right!
+                Red Ball to the rescue!
+                
+                Roll, jump and bounce through 75 exciting levels full of adventure.
+                Make your way through tricky traps and defeat all monsters.
+              </p>
+            </div>
+          </button>
+        </form>
+      </div>
+      <div class="game-card">
+        <form action="/game" method="post">
+          <input type="hidden" name="game_option" value="2">
+          <button type="submit" id="game2">
+            <div class="game-front">
+              <img src="../static/challenge2.png" alt="Game 2" />
+            </div>
+            <div class="game-back">
+              <p>Unblock the Blocked. Puzzle Me out.
+
+
+                Unblock Me is an addictive puzzle game that provides its players with endless hours of new and interesting challenges.- Intel Software
+                
+                
+                Unblock Me is a thought-provoking game that will definitely keep you thinking. - TheTbrothers
+                
+                
+                A classic puzzle game that has stood the test of time!</p>
+            </div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
