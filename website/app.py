@@ -68,11 +68,11 @@ OCEAN_scores = {
     'Neuroticism': 0,
 }
 OCEAN_ambi = {
-    'Openness to Experience': random.random(),
-    'Conscientiousness': random.random(),
-    'Extroversion': random.random(),
-    'Agreeableness': random.random(),
-    'Neuroticism': random.random(),
+    'Openness to Experience': 1,
+    'Conscientiousness': 1,
+    'Extroversion': 1,
+    'Agreeableness': 1,
+    'Neuroticism': 1,
 }
 
 OCEAN_normalise = {
@@ -87,7 +87,7 @@ questions = [
     # Openness to experience
     {'id': 'question1', 'question': 'I enjoy trying new things.', 'categories': [['Openness to Experience', 3], ['Agreeableness', 1],['Neuroticism',1]]},
     {'id': 'question2', 'question': 'I am intellectually curious.', 'categories': [['Openness to Experience', 3],['Conscientiousness',1],['Neuroticism',1]]},
-    {'id': 'question3', 'question': 'I have a vivid imagination.', 'categories': [['Openness to Experience', 3],[]]},
+    {'id': 'question3', 'question': 'I have a vivid imagination.', 'categories': [['Openness to Experience', 3]]},
     {'id': 'question4', 'question': 'I appreciate art and beauty.', 'categories': [['Openness to Experience',3]]},
     {'id': 'question5', 'question': 'I like to explore new ideas.', 'categories': [['Openness to Experience',3]]},
     # {'id': 'question6', 'question': 'I like to meet new people and go to gatherings.', 'categories': [['Openness to Experience',3]]},
@@ -95,31 +95,31 @@ questions = [
     # Conscientiousness
     {'id': 'question7', 'question': 'I am organized and tidy.', 'categories': [['Conscientiousness',3],['Neuroticism',1]]},
     {'id': 'question8', 'question': 'I pay attention to detail.', 'categories': [['Conscientiousness',3]]},
-    {'id': 'question9', 'question': 'I am responsible and reliable.', 'categories': [['Conscientiousness',3]]},
-    # {'id': 'question10', 'question': 'I follow a strict schedule.', 'categories': [['Conscientiousness',3]]},
+    {'id': 'question9', 'question': 'I am responsible and reliable.', 'categories': [['Conscientiousness',3],['Agreeableness',1]]},
+    {'id': 'question10', 'question': 'I follow a strict schedule.', 'categories': [['Conscientiousness',3]]},
     # {'id': 'question11', 'question': 'I am diligent in my work.', 'categories': [['Conscientiousness',3]]},
     
     # Extroversion
     # {'id': 'question12', 'question': 'I enjoy social gatherings and parties.', 'categories': [['Extroversion',3]]},
     # {'id': 'question13', 'question': 'I am talkative and outgoing.', 'categories': [['Extroversion',3]]},
     # {'id': 'question14', 'question': 'I feel comfortable in social situations.', 'categories': [['Extroversion',3]]},
-    # {'id': 'question15', 'question': 'I am energized by being around people.', 'categories': [['Extroversion',3]]},
+    {'id': 'question15', 'question': 'I am energized by being around people.', 'categories': [['Extroversion',3]]},
     {'id': 'question16', 'question': 'I have a wide circle of friends.', 'categories': [['Extroversion',3]]},
-    {'id': 'question17', 'question': 'I like to meet new people and go to gatherings.', 'categories': [['Extroversion',3],['Openness to Experience',3]]},
+    {'id': 'question17', 'question': 'I like to meet new people and go to gatherings.', 'categories': [['Extroversion',3],['Openness to Experience',1]]},
 
     # Agreeableness
     {'id': 'question18', 'question': 'I am considerate and compassionate.', 'categories': [['Agreeableness',3]]},
     {'id': 'question19', 'question': 'I avoid conflicts and arguments.', 'categories': [['Agreeableness',3]]},
-    # {'id': 'question20', 'question': 'I am easy to get along with.', 'categories': [['Agreeableness',3]]},
-    # {'id': 'question21', 'question': 'I am sympathetic to others\' feelings.', 'categories': [['Agreeableness',3]]},
+    {'id': 'question20', 'question': 'I am easy to get along with.', 'categories': [['Agreeableness',3]]},
+    {'id': 'question21', 'question': 'I am sympathetic to others\' feelings.', 'categories': [['Agreeableness',3]]},
     # {'id': 'question22', 'question': 'I often go out of my way to help others or resolve conflicts peacefully.', 'categories': [['Agreeableness',3]]},
     # {'id': 'question23', 'question': 'It is important for me to maintain harmonious relationships with those around me.', 'categories': [['Agreeableness',3]]},
 
     # Neuroticism
     {'id': 'question24', 'question': 'I often feel anxious or nervous.', 'categories': [['Neuroticism',3]]},
     {'id': 'question25', 'question': 'I am easily upset or stressed.', 'categories': [['Neuroticism',3]]},
-    # {'id': 'question26', 'question': 'I worry about things.', 'categories': [['Neuroticism',3]]},
-    # {'id': 'question27', 'question': 'I often feel down or depressed.', 'categories': [['Neuroticism',3]]},
+    {'id': 'question26', 'question': 'I worry about things.', 'categories': [['Neuroticism',3]]},
+    {'id': 'question27', 'question': 'I often feel down or depressed.', 'categories': [['Neuroticism',3]]},
     # {'id': 'question28', 'question': 'I am emotionally sensitive.', 'categories': [['Neuroticism',3]]}
 ]
 
