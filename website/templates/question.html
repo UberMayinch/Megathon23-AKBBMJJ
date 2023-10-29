@@ -77,7 +77,13 @@
             <input type="radio" name="answer" value="7"> 7 Strongly Agree
         </label>
 
-        <input type="submit" id="submitButton" value="Submit">
+        <input type="submit" id="submitButton" value="Submit" onclick="submitForm()">
     </form>
+
+    <script>
+        function submitForm() {
+            document.getElementById("questionForm").submit();
+        }
+    </script>
 </body>
 </html>

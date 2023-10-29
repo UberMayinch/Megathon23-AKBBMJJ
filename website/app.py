@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 import numpy as np
-
+import random
 app = Flask(__name__)
 
 # Create a database connection and a cursor
@@ -68,11 +68,11 @@ OCEAN_scores = {
     'Neuroticism': 0,
 }
 OCEAN_ambi = {
-    'Openness to Experience': 0.1,
-    'Conscientiousness': 0.2,
-    'Extroversion': 0.3,
-    'Agreeableness': 0.4,
-    'Neuroticism': 0.5,
+    'Openness to Experience': random.random(),
+    'Conscientiousness': random.random(),
+    'Extroversion': random.random(),
+    'Agreeableness': random.random(),
+    'Neuroticism': random.random(),
 }
 
 OCEAN_normalise = {
@@ -87,9 +87,9 @@ questions = [
     # Openness to experience
     {'id': 'question1', 'question': 'I enjoy trying new things.', 'categories': [['Openness to Experience', 3], ['Agreeableness', 1],['Neuroticism',1]]},
     {'id': 'question2', 'question': 'I am intellectually curious.', 'categories': [['Openness to Experience', 3],['Conscientiousness',1],['Neuroticism',1]]},
-    # {'id': 'question3', 'question': 'I have a vivid imagination.', 'categories': [['Openness to Experience', 3]]},
-    # {'id': 'question4', 'question': 'I appreciate art and beauty.', 'categories': [['Openness to Experience',3]]},
-    # {'id': 'question5', 'question': 'I like to explore new ideas.', 'categories': [['Openness to Experience',3]]},
+    {'id': 'question3', 'question': 'I have a vivid imagination.', 'categories': [['Openness to Experience', 3],[]]},
+    {'id': 'question4', 'question': 'I appreciate art and beauty.', 'categories': [['Openness to Experience',3]]},
+    {'id': 'question5', 'question': 'I like to explore new ideas.', 'categories': [['Openness to Experience',3]]},
     # {'id': 'question6', 'question': 'I like to meet new people and go to gatherings.', 'categories': [['Openness to Experience',3]]},
     
     # Conscientiousness
