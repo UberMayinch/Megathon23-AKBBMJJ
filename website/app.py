@@ -180,7 +180,7 @@ def submit():
         global question_id
         question_id = questions[current_question]['id']
 
-        return render_template('question.html', question_no=current_question, question=questions[current_question]['question'], question_id=questions[current_question]['id'])
+        return render_template('question.html', question_no=current_question, question=questions[current_question]['question'], question_id=questions[current_question]['id'], OCEAN_scores=OCEAN_scores, OCEAN_ambi=OCEAN_ambi)
 
 @app.route('/Done', methods=['POST'])
 def Done():
@@ -221,7 +221,7 @@ def Done():
             question = questions[current_question]['question']
             question_id = questions[current_question]['id']
             print(OCEAN_ambi, asked)
-            return render_template('question.html', question_no=current_question + 1, question=question, question_id=question_id)
+            return render_template('question.html', question_no=current_question + 1, question=question, question_id=question_id, OCEAN_scores=OCEAN_scores, OCEAN_ambi=OCEAN_ambi)
         else:
             # Normalize scores based on OCEAN_normalise values
             for category, weight in OCEAN_scores.items():

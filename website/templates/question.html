@@ -80,6 +80,21 @@
         <input type="submit" id="submitButton" value="Submit" onclick="submitForm()">
     </form>
 
+    <h1>OCEAN Scores and Ambi</h1>
+
+    <p>O: {{ OCEAN_scores['Openness to Experience'] }}</p>
+    <p>C: {{ OCEAN_scores['Conscientiousness'] }}</p>
+    <p>E: {{ OCEAN_scores['Extroversion'] }}</p>
+    <p>A: {{ OCEAN_scores['Agreeableness'] }}</p>
+    <p>N: {{ OCEAN_scores['Neuroticism'] }}</p>
+    
+    <h2>Ambi Values</h2>
+    <p>O: {{ OCEAN_ambi['Openness to Experience'] }}</p>
+    <p>C: {{ OCEAN_ambi['Conscientiousness'] }}</p>
+    <p>E: {{ OCEAN_ambi['Extroversion'] }}</p>
+    <p>A: {{ OCEAN_ambi['Agreeableness'] }}</p>
+    <p>N: {{ OCEAN_ambi['Neuroticism'] }}</p>
+
     <script>
         function submitForm() {
             document.getElementById("questionForm").submit();
