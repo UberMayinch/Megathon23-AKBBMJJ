@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+
+<html>
+
+<head>
+    <title>OCEAN Scores</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #oceanChart {
+            max-width: 800px;
+            max-height: 800px;
+        }
+    </style>
+</head>
+
+<body >
+     <div>
+        <h1>OCEAN Scores</h1>
+        <canvas id="oceanChart"></canvas>
+        <script>
+            var o = {{ data[0]}}
+            var c = {{ data[1]}}
+            var e = {{ data[2]}}
+            var a = {{ data[3]}}
+            var n = {{ data[4]}}
+            var OCEAN_scores = {
+                "Openness": o,
+                "Conscientiousness": c,
+                "Extraversion": e,
+                "Agreeableness": a,
+                "Neuroticism": n
+            }
+
+            var traits = Object.keys(OCEAN_scores);
+            var scores = Object.values(OCEAN_scores);
+
+            var ctx = document.getElementById('oceanChart').getContext('2d');
+            var oceanChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: traits,
+                    datasets: [{
+                        label: 'OCEAN Scores',
+                        data: scores,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scale: {
+                        angleLines: {
+                            display: true
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+    <div>
+        <h1 id="questionTitle">We have successfully analysed {{name}}</h1>
+        <br>
+        <p>Openness - {{data[0]}} <br>
+            Conscientiousness - {{data[1]}}<br>
+            Extraversion - {{data[2]}} <br>
+            Agreeableness - {{data[3]}} <br>
+            Neuroticism - {{data[4]}} </p>
+
+        <p>
+            Based on our analysis, we feel that {{name}} is
+            {% if job == 0 %}
+            not suited for a
+            {% elif job == 1 %}
+            best suited for a tech
+            {% elif job == 2 %}
+            best suited for a sales
+            {% endif %}
+            job in the company.
+        </p>
+    </div>
+
+</body>
+
+</html>

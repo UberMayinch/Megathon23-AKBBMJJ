@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Questionnaire</title>
     <style>
@@ -16,6 +17,11 @@
         }
 
         h1 {
+            text-align: center;
+        }
+
+        td {
+            min-width: 100px;
             text-align: center;
         }
 
@@ -64,8 +70,9 @@
         }
     </style>
 </head>
+
 <body>
-    <h1 id="questionTitle">QUESTION {{question_no}}</h1>
+    <!-- <h1 id="questionTitle">QUESTION {{question_no}}</h1> -->
     <form id="questionForm" action="/Done" method="post">
         <label id="questionLabel" for="{{ question_id }}"><a>Question:</a> {{ question }}<br> Strongly Disagree
             <input type="radio" name="answer" value="1"> 1
@@ -80,25 +87,70 @@
         <input type="submit" id="submitButton" value="Submit" onclick="submitForm()">
     </form>
 
-    <h1>OCEAN Scores and Ambi</h1>
-
-    <p>O: {{ OCEAN_scores['Openness to Experience'] }}</p>
-    <p>C: {{ OCEAN_scores['Conscientiousness'] }}</p>
-    <p>E: {{ OCEAN_scores['Extroversion'] }}</p>
-    <p>A: {{ OCEAN_scores['Agreeableness'] }}</p>
-    <p>N: {{ OCEAN_scores['Neuroticism'] }}</p>
-    
-    <h2>Ambi Values</h2>
-    <p>O: {{ OCEAN_ambi['Openness to Experience'] }}</p>
-    <p>C: {{ OCEAN_ambi['Conscientiousness'] }}</p>
-    <p>E: {{ OCEAN_ambi['Extroversion'] }}</p>
-    <p>A: {{ OCEAN_ambi['Agreeableness'] }}</p>
-    <p>N: {{ OCEAN_ambi['Neuroticism'] }}</p>
-
+    <table>
+        <th>
+            OCEAN Scores and Ambiguities
+        </th>
+        <tr>
+            <td>
+                Openness
+            </td>
+            <td>
+                {{ OCEAN_scores['Openness to Experience'] }}
+            </td>
+            <td>
+                {{ OCEAN_ambi['Openness to Experience'] }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Conscientiousness
+            </td>
+            <td>
+                {{ OCEAN_scores['Conscientiousness'] }}
+            </td>
+            <td>
+                {{ OCEAN_ambi['Conscientiousness'] }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Extraversion
+            </td>
+            <td>
+                {{ OCEAN_scores['Extroversion'] }}
+            </td>
+            <td>
+                {{ OCEAN_ambi['Extroversion'] }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Agreeableness
+            </td>
+            <td>
+                {{ OCEAN_scores['Agreeableness'] }}
+            </td>
+            <td>
+                {{ OCEAN_ambi['Agreeableness'] }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Neuroticism
+            </td>
+            <td>
+                {{ OCEAN_scores['Neuroticism'] }}
+            </td>
+            <td>
+                {{ OCEAN_ambi['Neuroticism'] }}
+            </td>
+    </table>
     <script>
         function submitForm() {
             document.getElementById("questionForm").submit();
         }
     </script>
 </body>
+
 </html>

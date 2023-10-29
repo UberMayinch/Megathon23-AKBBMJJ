@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Social Media Handles Form</title>
     <style>
@@ -63,9 +64,13 @@
         }
     </style>
 </head>
+
 <body>
     <form action="/submit" method="post">
         <h1>Enter Your Social Media Handles</h1>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" required>
 
@@ -84,4 +89,5 @@
         <input type="submit" value="Submit">
     </form>
 </body>
+
 </html>
