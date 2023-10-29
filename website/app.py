@@ -57,6 +57,7 @@ conn.commit()
 conn.close()
 
 current_question = 0
+qno = 0
 
 # Create a dictionary to store scores for each category
 OCEAN_scores = {
@@ -65,6 +66,13 @@ OCEAN_scores = {
     'Extroversion': 0,
     'Agreeableness': 0,
     'Neuroticism': 0,
+}
+OCEAN_ambi = {
+    'Openness to Experience': 0.1,
+    'Conscientiousness': 0.2,
+    'Extroversion': 0.3,
+    'Agreeableness': 0.4,
+    'Neuroticism': 0.5,
 }
 
 OCEAN_normalise = {
@@ -87,7 +95,7 @@ questions = [
     # Conscientiousness
     {'id': 'question7', 'question': 'I am organized and tidy.', 'categories': [['Conscientiousness',3],['Neuroticism',1]]},
     {'id': 'question8', 'question': 'I pay attention to detail.', 'categories': [['Conscientiousness',3]]},
-    # {'id': 'question9', 'question': 'I am responsible and reliable.', 'categories': [['Conscientiousness',3]]},
+    {'id': 'question9', 'question': 'I am responsible and reliable.', 'categories': [['Conscientiousness',3]]},
     # {'id': 'question10', 'question': 'I follow a strict schedule.', 'categories': [['Conscientiousness',3]]},
     # {'id': 'question11', 'question': 'I am diligent in my work.', 'categories': [['Conscientiousness',3]]},
     
@@ -115,6 +123,33 @@ questions = [
     # {'id': 'question28', 'question': 'I am emotionally sensitive.', 'categories': [['Neuroticism',3]]}
 ]
 
+asked = []
+def find_best_question():
+    req_trait = max(OCEAN_ambi, key=OCEAN_ambi.get)
+    cur = len(questions) 
+    max_wt = 0
+    for i in range(len(questions)):
+        if i in asked:
+            continue
+        if cur == len(questions):
+            cur = i
+        q = questions[i]
+        for j in q['categories']:
+            if j[0] == req_trait:
+                if j[1] > max_wt:
+                    cur = i
+                    max_wt = j[1]
+    req_q = questions[cur]    
+    for j in req_q['categories']:
+            if j[0] == req_trait:
+                if j[1] > max_wt:
+                    cur = i
+                    max_wt = j[1]      
+            OCEAN_ambi[j[0]] = max(0, OCEAN_ambi[j[0]] - 0.05 * j[1]) 
+    asked.append(cur)
+    return cur
+
+
 @app.route('/')
 def form():
     return render_template('form.html')
@@ -140,16 +175,18 @@ def submit():
         conn.close()
 
         global current_question
+        current_question  = find_best_question()
         question = questions[current_question]['question']
         global question_id
         question_id = questions[current_question]['id']
 
-        return render_template('question.html', question_no=current_question + 1, question=question, question_id=question_id)
+        return render_template('question.html', question_no=current_question, question=questions[current_question]['question'], question_id=questions[current_question]['id'])
 
 @app.route('/Done', methods=['POST'])
 def Done():
     if request.method == 'POST':
         global current_question
+        global qno
         global email
         global question_id
         answer = int(request.form['answer'])
@@ -176,11 +213,14 @@ def Done():
         conn.commit()
         conn.close()
 
-        current_question += 1  # Move to the next question
-        current_question += 1  # Move to the next question
-        if current_question < len(questions):
+        current_question = find_best_question()
+
+        qno += 1
+        # current_question += 1  # Move to the next question
+        if qno < 10:
             question = questions[current_question]['question']
             question_id = questions[current_question]['id']
+            print(OCEAN_ambi, asked)
             return render_template('question.html', question_no=current_question + 1, question=question, question_id=question_id)
         else:
             # Normalize scores based on OCEAN_normalise values
